@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { ref,onMounted} from 'vue';
+import { ref,onMounted,onUnmounted} from 'vue';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -127,6 +127,13 @@ export default {
       error.value = err.message;
     }
     };
+    // Método que se llamará cada 5 segundos
+    const interval = setInterval(fetchUsers, 5000);
+
+    // Detener el intervalo cuando el componente se desmonte
+    onUnmounted(() => {
+      clearInterval(interval);
+    });
 
 
     onMounted(() => {
