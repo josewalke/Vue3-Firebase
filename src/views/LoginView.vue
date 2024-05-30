@@ -128,7 +128,7 @@ export default {
     }
     };
     // Método que se llamará cada 5 segundos
-    const interval = setInterval(fetchUsers, 5000);
+    const interval = setInterval(fetchUsers, 2000);
 
     // Detener el intervalo cuando el componente se desmonte
     onUnmounted(() => {
