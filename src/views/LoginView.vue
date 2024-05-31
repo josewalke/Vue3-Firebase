@@ -35,15 +35,6 @@ export default {
     type: { type: String, default: 'ERROR' },
     message: String
   },
-  data() {
-    return {
-      visible: true
-    };
-  }, methods: {
-    dismiss() {
-      this.visible = false;
-    }
-  },
   setup() {
     const email = ref('jose@gmail.com');
     const password = ref('123456789');
@@ -82,7 +73,7 @@ export default {
       try {
         const auth = getAuth();
         const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-        console.log('Usuario creado:', userCredential.user);
+        //console.log('Usuario creado:', userCredential.user);
         await addDoc(collection(db, 'Usuarios'), {
           email: email.value,
           state: true
@@ -92,7 +83,7 @@ export default {
         // Aquí puedes redirigir al usuario o hacer cualquier otra acción después del registro exitoso
       } catch (err) {
         error.value = err.message;
-        console.error('Error al registrar usuario:', err.message);
+        //console.error('Error al registrar usuario:', err.message);
         alert("Esta cuenta ya esta registrada");
       }
     };
@@ -139,9 +130,6 @@ export default {
     onMounted(() => {
       fetchUsers();
     });
-
-    
-    
     return { email, password, login,error, register,users, updateUser};
   }
 };
