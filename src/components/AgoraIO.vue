@@ -21,7 +21,7 @@ export default {
   methods: {
     async joinChannel() {
       try {
-        const { microphoneTrack, cameraTrack } = await joinChannel("testChannel");
+        const { microphoneTrack, cameraTrack } = await joinChannel("test");
 
         this.localTracks = { microphoneTrack, cameraTrack };
 

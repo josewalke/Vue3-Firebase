@@ -1,6 +1,6 @@
 import { createClient, createMicrophoneAndCameraTracks } from "agora-rtc-sdk-ng";
 
-const appId = "2d85de8e31104e8fa2b89ddea99339b3"; // Reemplaza con tu App ID
+const appId = "39adcd4038db441ca32550138cc25bf2"; // Reemplaza con tu App ID
 const token = null; // Usa un token generado si tienes habilitada la autenticación
 
 export const agoraClient = createClient({ mode: "rtc", codec: "vp8" });
