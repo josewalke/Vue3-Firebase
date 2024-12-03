@@ -16,15 +16,22 @@
     </div>
     <p v-else>No users found.</p>
   </div>
+  <Agora />
+  <div>
+
+  </div>
 </template>
 
 <script>
 import { ref,onMounted,onUnmounted} from 'vue';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth'; // Asegúrate de que esta línea esté presente
 import { collection, addDoc, updateDoc, doc,where,getDocs } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
+import { getAuth } from "firebase/auth";
+
+import Agora from "@/components/AgoraIO.vue";
 
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
@@ -35,6 +42,9 @@ export default {
     type: { type: String, default: 'ERROR' },
     message: String
   },
+  components: {
+    Agora,
+  },
   setup() {
     const email = ref('jose@gmail.com');
     const password = ref('123456789');
@@ -42,7 +52,12 @@ export default {
     const router = useRouter();
     const error = ref(null);
     const users = ref([]);
-    
+
+    // const appId = ref('2d85de8e31104e8fa2b89ddea99339b3');
+    // const canal = ref("prueba");
+
+
+
 
     const login = async (userId) => {
       try {
@@ -72,8 +87,10 @@ export default {
     const register = async () => {
       try {
         const auth = getAuth();
-        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-        //console.log('Usuario creado:', userCredential.user);
+        // Ejemplo de uso
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        // Aquí haces algo con userCredential
+        console.log(userCredential);
         await addDoc(collection(db, 'Usuarios'), {
           email: email.value,
           state: true
@@ -94,7 +111,7 @@ export default {
         users.value = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         //console.log(users);
         //console.log(users.value.length);
-        
+
       } catch (err) {
         error.value = err.message;
       }
