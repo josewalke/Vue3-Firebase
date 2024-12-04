@@ -18,6 +18,9 @@
   </div>
   <Agora />
   <div>
+    <div>
+      <MessagingChat/>
+    </div>
 
   </div>
 </template>
@@ -32,6 +35,7 @@ import { db } from '../firebaseConfig';
 import { getAuth } from "firebase/auth";
 
 import Agora from "@/components/AgoraIO.vue";
+import MessagingChat from "@/components/MessagingChat.vue";
 
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
@@ -44,6 +48,7 @@ export default {
   },
   components: {
     Agora,
+    MessagingChat,
   },
   setup() {
     const email = ref('jose@gmail.com');

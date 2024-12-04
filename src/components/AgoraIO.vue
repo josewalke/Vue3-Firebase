@@ -2,8 +2,10 @@
   <div>
     <h2>Videollamada con Agora</h2>
     <button @click="joinChannel">Unirse al canal</button>
-    <div ref="localVideo" id="local-stream"></div>
-    <div ref="remoteVideo" id="remote-stream"></div>
+    <div class="video-container">
+      <div ref="localVideo" id="local-stream" class="video-box"></div>
+      <div ref="remoteVideo" id="remote-stream" class=""></div>
+    </div>
   </div>
 </template>
 
@@ -47,11 +49,36 @@ export default {
 </script>
 
 <style>
-#local-stream,
-#remote-stream {
-  width: 320px;
-  height: 240px;
-  margin: 10px;
-  background: #000;
+.video-container {
+  display: flex;
+  /* justify-content: space-between; */
+  /* Opcional: Espacia los elementos */
+   gap: 10px;
+  /* Espaciado entre los videos */
+}
+
+.video-box {
+  width: 45%;
+  /* Ajusta el ancho según tu necesidad */
+  height: 300px;
+  /* Ajusta la altura según tu necesidad */
+  border: 1px solid #ccc;
+  /* Opcional: para visualización */
+  background-color: #000;
+  /* Color de fondo para representar el video */
+}
+#remoteVideoContainer {
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 10px; */
+  /* Espacio entre videos */
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+#remoteVideoContainer>div {
+  border: 1px solid #ccc;
+  background-color: #000;
 }
 </style>

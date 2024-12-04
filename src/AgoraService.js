@@ -41,19 +41,36 @@ agoraClient.on("user-published", async (user, mediaType) => {
   console.log("Suscripción exitosa al usuario remoto:", user.uid);
 
   if (mediaType === "video") {
-    const remoteContainer = document.createElement("div");
-    remoteContainer.id = user.uid.toString();
-    remoteContainer.style.width = "320px";
-    remoteContainer.style.height = "240px";
-    document.body.append(remoteContainer);
+    // Usa un div existente en lugar de crear uno nuevo
+    const remoteContainer = document.getElementById("local-stream");
+    if (!remoteContainer) {
+      console.error("No se encontró el contenedor remoto");
+      return;
+    }
 
-    user.videoTrack.play(remoteContainer);
+    // Verifica si ya existe un contenedor para este usuario
+    let userVideoContainer = document.getElementById(`user-${user.uid}`);
+    if (!userVideoContainer) {
+      // Si no existe, crea uno nuevo
+      userVideoContainer = document.createElement("div");
+      userVideoContainer.id = `user-${user.uid}`;
+      userVideoContainer.style.width = "600px";
+      userVideoContainer.style.height = "340px";
+      userVideoContainer.style.margin = "10px"; // Opcional: separa los videos
+
+      remoteContainer.appendChild(userVideoContainer);
+    }
+
+    // Reproducir el video del usuario remoto en su contenedor específico
+    user.videoTrack.play(userVideoContainer);
   }
 
   if (mediaType === "audio") {
     user.audioTrack.play();
   }
 });
+
+
 
 agoraClient.on("user-unpublished", (user) => {
   console.log("Usuario remoto dejó de publicar:", user.uid);
