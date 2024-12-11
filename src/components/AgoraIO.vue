@@ -51,24 +51,37 @@ export default {
 <style>
 .video-container {
   display: flex;
-  /* Activa flexbox */
+  flex-direction: row;
+  /* Videos en fila horizontal en pantallas grandes */
   justify-content: center;
-  /* Centra horizontalmente */
   align-items: center;
-  /* Centra verticalmente */
-  height: 100vh;
-  /* Ajusta según el tamaño del contenedor */
+  flex-wrap: wrap;
+  /* Permite que los videos se ajusten en una nueva fila si es necesario */
+  height: 50vh;
+  /* Tamaño dinámico del contenedor */
+  gap: 0px;
+  /* Espacio entre videos */
 }
 
 .video-box {
-  width: 45%;
-  /* Ajusta el ancho según tu necesidad */
-  height: 600px;
-  /* Ajusta la altura según tu necesidad */
+  flex: 1 1 calc(50% - 20px);
+  max-width: 600px;
+  height: auto;
+  aspect-ratio: 16/9;
   border: 1px solid #ccc;
-  /* Opcional: para visualización */
   background-color: #000;
-  /* Color de fondo para representar el video */
+}
+
+@media (max-width: 768px) {
+  .video-container {
+    flex-direction: column;
+  }
+
+  .video-box {
+    flex: 1 1 100%;
+    max-width: 100%;
+    height: 50vh;
+  }
 }
 #remoteVideoContainer {
   display: flex;

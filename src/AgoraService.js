@@ -42,7 +42,7 @@ agoraClient.on("user-published", async (user, mediaType) => {
 
   if (mediaType === "video") {
     // Usa un div existente en lugar de crear uno nuevo
-    const remoteContainer = document.getElementById("local-stream");
+    const remoteContainer = document.getElementById("remote-stream");
     if (!remoteContainer) {
       console.error("No se encontró el contenedor remoto");
       return;
