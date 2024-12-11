@@ -4,7 +4,7 @@
     <button @click="joinChannel">Unirse al canal</button>
     <div class="video-container">
       <div ref="localVideo" id="local-stream" class="video-box"></div>
-      <div ref="remoteVideo" id="remote-stream" class=""></div>
+      <div ref="remoteVideo" id="remote-stream" class="video-box"></div>
     </div>
   </div>
 </template>
@@ -51,16 +51,19 @@ export default {
 <style>
 .video-container {
   display: flex;
-  /* justify-content: space-between; */
-  /* Opcional: Espacia los elementos */
-   gap: 10px;
-  /* Espaciado entre los videos */
+  /* Activa flexbox */
+  justify-content: center;
+  /* Centra horizontalmente */
+  align-items: center;
+  /* Centra verticalmente */
+  height: 100vh;
+  /* Ajusta según el tamaño del contenedor */
 }
 
 .video-box {
   width: 45%;
   /* Ajusta el ancho según tu necesidad */
-  height: 300px;
+  height: 600px;
   /* Ajusta la altura según tu necesidad */
   border: 1px solid #ccc;
   /* Opcional: para visualización */
